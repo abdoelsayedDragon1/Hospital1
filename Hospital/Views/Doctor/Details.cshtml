@@ -1,0 +1,28 @@
+﻿
+<div class="row">
+    <div class="col text-center mb-5">
+        <h1>Welcome, please choose the specialist doctor for your case.</h1>
+        <h3>We wish you a speedy recovery and wellness.</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6 mb-3">
+        <h1>Book Appointment</h1>
+    </div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-4">
+            <div class="card" style="width: 18rem;">
+                <img src="~/Photo/@item.Img" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <strong> <h4 class="card-title">@item.Name</h4> </strong>
+                    <p class="card-text">Specialization: @item.Specialization</p>
+                    <a href="https://localhost:7091/Doctor/view?id=@item.Id&name=@item.Name" class="btn btn-primary">Book Appointment</a>
+
+                </div>
+            </div>
+        </div>
+    }
+</div>

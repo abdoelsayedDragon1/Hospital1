@@ -1,0 +1,28 @@
+﻿
+<div class="row">
+    <div class="col-12 mb-3">
+        <h1>All Appointments</h1>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Appointment Date</th>
+                <th scope="col">Appointment Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr class="table-light">
+                    <th scope="row">@item.Id</th>
+                    <td>@item.PatientName</td>
+                    <td>@item.AppointmentDate.ToShortDateString()</td> 
+                    <td>@item.AppointmentTime</td>
+                </tr>
+            }
+        </tbody>
+    </table> 
+</div>

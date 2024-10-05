@@ -1,0 +1,56 @@
+﻿@{
+    var doctorName = Context.Request.Query["name"].ToString();
+}
+
+<div class="row">
+    <div class="col-9 mb-3">
+        <h2>Complete Appointment with @doctorName</h2>
+    </div>
+    <div class="col-3">
+        <a href="/Appointment/Index" type="button" class="btn btn-primary"><i class="bi bi-plus-circle"></i>All Appointments</a>
+    </div>
+</div>
+
+<form id="appointmentForm" action="@Url.Action("Save", "Appointment")" method="post" onsubmit="event.preventDefault(); submitForm();">
+    <label for="patientName">Patient Name:</label>
+    <input type="text" id="patientName" name="patientName" placeholder="Enter your name" required>
+
+    <label for="appointmentDate">Appointment Date:</label>
+    <input type="date" id="appointmentDate" name="appointmentDate" required>
+
+    <label for="appointmentTime">Appointment Time:</label>
+    <input type="time" id="appointmentTime" name="appointmentTime" required>
+
+    <button type="submit">Complete Appointment</button>
+</form>
+
+<p id="successMessage" style="display:none;">Your appointment has been successfully booked. Thank you!</p>
+
+<script>
+    function submitForm() {
+        const form = document.getElementById('appointmentForm');
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                if (response.ok) {
+                    showSuccessMessage();
+                    form.reset();
+                } else {
+                    
+                    alert('An error occurred while booking your appointment. Please try again.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while booking your appointment. Please try again.');
+            });
+    }
+
+    function showSuccessMessage() {
+        document.getElementById('successMessage').style.display = 'block';
+    }
+</script>
